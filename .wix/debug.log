@@ -1,0 +1,40 @@
+----- CLI crash report at 2026-05-30T17:27:17.627Z
+Error Trace
+LoginRequired: LoginRequired
+    at <anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\whoami.tsx:18:17)
+    at runCommand (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\render-command.tsx:50:11)
+    at _Command.<anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\whoami.tsx:17:15)
+    at async _Command.parseAsync (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\node_modules\commander\lib\command.js:1104:5)
+    at async <anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\index.tsx:111:25)
+Error Info
+{}
+----- CLI crash report at 2026-05-30T17:28:04.217Z
+Error Trace
+LoginRequired: LoginRequired
+    at <anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\whoami.tsx:18:17)
+    at runCommand (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\render-command.tsx:50:11)
+    at _Command.<anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\commands\whoami.tsx:17:15)
+    at async _Command.parseAsync (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\node_modules\commander\lib\command.js:1104:5)
+    at async <anonymous> (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli\src\index.tsx:111:25)
+Error Info
+{}
+----- CLI crash report at 2026-05-30T17:28:22.202Z
+Error Trace
+FailedToGetDeviceCode: FailedToGetDeviceCode
+    at AuthClient.requestDeviceCode (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli-auth\src\client.ts:86:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+caused by: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "string",
+    "path": [],
+    "message": "Expected object, received string"
+  }
+]
+    at Object.get error (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\node_modules\zod\v3\types.js:39:31)
+    at _ZodObject.parse (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\node_modules\zod\v3\types.js:114:22)
+    at AuthClient.requestDeviceCode (C:\Users\harsh\AppData\Local\npm-cache\_npx\75dcc8e0e5613276\node_modules\@wix\cli-auth\src\client.ts:84:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Error Info
+{}

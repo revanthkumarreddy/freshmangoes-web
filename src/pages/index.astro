@@ -1,0 +1,140 @@
+---
+import Base from '~/layouts/Base.astro';
+import { fetchAllProducts, priceOf, primaryImage, formatINR } from '~/lib/catalog';
+
+const products = await fetchAllProducts();
+const featured = products.slice(0, 6);
+---
+<Base>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="container-x grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center py-20 lg:py-28">
+      <div>
+        <p class="eyebrow mb-5">Srinivasapur · Karnataka · est. 2005</p>
+        <h1 class="display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+          The mangoes of <span class="text-[color:var(--color-saffron-500)] italic">summer</span>,<br/>
+          delivered to your door.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-[color:var(--color-ink-soft)] leading-relaxed">
+          For twenty seasons, our family orchard has hand-picked Karnataka's finest mangoes —
+          Alphonso, Banganpalli, Mallika, Totapuri — and shipped them, sun-ripe and untouched, in
+          carefully cushioned boxes across India.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/shop" class="btn btn-saffron">Shop the harvest →</a>
+          <a href="/about" class="btn btn-ghost">Our story</a>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[color:var(--color-ink-soft)]">
+          <div class="flex items-center gap-2"><span aria-hidden="true">🚚</span> Free shipping over ₹1,500</div>
+          <div class="flex items-center gap-2"><span aria-hidden="true">🌿</span> Naturally tree-ripened</div>
+          <div class="flex items-center gap-2"><span aria-hidden="true">📦</span> Picked &amp; shipped in 24 hrs</div>
+        </div>
+      </div>
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-[color:var(--color-saffron-200)] to-[color:var(--color-saffron-400)]">
+        {featured[0] && (
+          <img
+            src={primaryImage(featured[0])}
+            alt={featured[0].name ?? ''}
+            class="w-full h-full object-cover mix-blend-multiply"
+            loading="eager"
+          />
+        )}
+        <div class="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-white/85 rounded-2xl p-4">
+          <p class="eyebrow">This week's hero</p>
+          <p class="display text-2xl mt-1">{featured[0]?.name || 'Alphonso'}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured varieties -->
+  <section class="container-x py-20">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="eyebrow mb-2">The Harvest</p>
+        <h2 class="display text-4xl md:text-5xl">A mango for every memory.</h2>
+      </div>
+      <a href="/shop" class="hidden md:inline-block text-sm font-semibold hover:text-[color:var(--color-saffron-600)]">See all →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featured.map(p => {
+        const { price, salePrice } = priceOf(p);
+        return (
+          <a href={`/shop/${p.slug}`} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
+            <div class="aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)]">
+              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <h3 class="display text-2xl leading-tight">{p.name}</h3>
+              <p class="text-xs opacity-70 line-clamp-2 mt-1 mb-3">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 120)}</p>
+              <p class="flex items-baseline gap-2">
+                {salePrice && <span class="price-strike text-sm">{formatINR(salePrice)}</span>}
+                <span class="font-semibold text-lg">{formatINR(price)}</span>
+              </p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+    <div class="text-center mt-10 md:hidden">
+      <a href="/shop" class="btn btn-ghost">See all mangoes</a>
+    </div>
+  </section>
+
+  <!-- Brand story strip -->
+  <section class="bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)]">
+    <div class="container-x py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow !text-[color:var(--color-saffron-300)] mb-4">Our Orchard</p>
+        <h2 class="display text-4xl md:text-5xl mb-6">Two decades of patient farming.</h2>
+        <p class="text-lg opacity-90 leading-relaxed max-w-xl">
+          Tucked between Kolar and Chintamani, our orchards have grown slowly — tree by tree,
+          season by season. We don't pluck early. We don't ship hard. Every mango leaves us
+          tree-ripened, hand-wrapped, and on its way the same day.
+        </p>
+        <a href="/about" class="btn btn-saffron mt-8 inline-flex">Read the story →</a>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
+          <div class="text-center">
+            <div class="display text-5xl">20+</div>
+            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Years</div>
+          </div>
+        </div>
+        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
+          <div class="text-center">
+            <div class="display text-5xl">10</div>
+            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Varieties</div>
+          </div>
+        </div>
+        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
+          <div class="text-center">
+            <div class="display text-5xl">24h</div>
+            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Farm to box</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise -->
+  <section class="container-x py-20">
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="text-4xl mb-3">🌳</div>
+        <h3 class="display text-2xl mb-2">Tree-ripened</h3>
+        <p class="text-sm opacity-75 leading-relaxed">We never gas. Every fruit ripens on the branch, in the sun.</p>
+      </div>
+      <div>
+        <div class="text-4xl mb-3">📦</div>
+        <h3 class="display text-2xl mb-2">Hand-packed</h3>
+        <p class="text-sm opacity-75 leading-relaxed">Cushioned in paper shavings, hand-counted, sealed by us.</p>
+      </div>
+      <div>
+        <div class="text-4xl mb-3">💛</div>
+        <h3 class="display text-2xl mb-2">Loved-it guarantee</h3>
+        <p class="text-sm opacity-75 leading-relaxed">If your box doesn't bring joy, we'll send another. No questions.</p>
+      </div>
+    </div>
+  </section>
+</Base>

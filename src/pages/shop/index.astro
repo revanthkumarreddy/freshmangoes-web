@@ -1,0 +1,44 @@
+---
+import Base from '~/layouts/Base.astro';
+import { fetchAllProducts, priceOf, primaryImage, formatINR } from '~/lib/catalog';
+
+const products = await fetchAllProducts();
+---
+<Base title="Shop all mangoes — FreshMangos" description="Browse our hand-picked Karnataka mangoes. Alphonso, Banganpalli, Mallika, Totapuri and more. Free shipping over ₹1,500.">
+  <section class="container-x py-16">
+    <div class="max-w-3xl mb-12">
+      <p class="eyebrow mb-3">The Shop</p>
+      <h1 class="display text-5xl md:text-6xl tracking-tight">Choose your mango.</h1>
+      <p class="mt-4 text-lg opacity-80 max-w-xl">
+        Ten varieties from our family orchard in Srinivasapur. Pick your size — 1 kg, 3 kg or 5 kg —
+        and we'll ship within 24 hours.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {products.map(p => {
+        const { price, salePrice } = priceOf(p);
+        const onSale = !!salePrice;
+        return (
+          <a href={`/shop/${p.slug}`} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
+            <div class="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)]">
+              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              {onSale && (
+                <span class="absolute top-3 left-3 bg-[color:var(--color-ink)] text-[color:var(--color-cream)] text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Sale</span>
+              )}
+            </div>
+            <div class="p-5">
+              <h2 class="display text-2xl leading-tight">{p.name}</h2>
+              <p class="text-xs opacity-70 line-clamp-2 mt-1 mb-3 min-h-[2.4em]">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 120)}</p>
+              <p class="flex items-baseline gap-2">
+                {salePrice && <span class="price-strike text-sm">{formatINR(salePrice)}</span>}
+                <span class="font-semibold text-lg">{formatINR(price)}</span>
+                <span class="text-xs opacity-60 ml-auto">View →</span>
+              </p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</Base>
