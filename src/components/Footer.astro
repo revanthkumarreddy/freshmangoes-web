@@ -1,4 +1,5 @@
 ---
+import { url } from '~/lib/url';
 const year = new Date().getFullYear();
 ---
 <footer class="mt-24 bg-[color:var(--color-ink)] text-[color:var(--color-cream)]">
@@ -18,10 +19,10 @@ const year = new Date().getFullYear();
     <div>
       <h4 class="text-sm font-semibold uppercase tracking-wider opacity-70 mb-4">Shop</h4>
       <ul class="space-y-2 text-sm">
-        <li><a href="/shop" class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">All mangoes</a></li>
-        <li><a href="/about" class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Our farm story</a></li>
-        <li><a href="/faq" class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">FAQ &amp; shipping</a></li>
-        <li><a href="/contact" class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Get in touch</a></li>
+        <li><a href={url('/shop')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">All mangoes</a></li>
+        <li><a href={url('/about')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Our farm story</a></li>
+        <li><a href={url('/faq')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">FAQ &amp; shipping</a></li>
+        <li><a href={url('/contact')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Get in touch</a></li>
       </ul>
     </div>
 

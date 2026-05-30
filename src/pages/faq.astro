@@ -1,5 +1,6 @@
 ---
 import Base from '~/layouts/Base.astro';
+import { url } from '~/lib/url';
 
 const faqs = [
   {
@@ -36,7 +37,7 @@ const faqs = [
   <section class="container-x py-16 max-w-3xl">
     <p class="eyebrow mb-3">Help &amp; info</p>
     <h1 class="display text-5xl md:text-6xl">Good questions.</h1>
-    <p class="mt-4 text-lg opacity-80">Can't find what you're looking for? <a href="/contact" class="underline underline-offset-4 hover:text-[color:var(--color-saffron-600)]">Drop us a line</a>.</p>
+    <p class="mt-4 text-lg opacity-80">Can't find what you're looking for? <a href={url('/contact')} class="underline underline-offset-4 hover:text-[color:var(--color-saffron-600)]">Drop us a line</a>.</p>
 
     <div class="mt-12 divide-y divide-black/10 border-y border-black/10">
       {faqs.map(({ q, a }) => (

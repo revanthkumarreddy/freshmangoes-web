@@ -59,7 +59,7 @@ export default function CartPage() {
       <div className="text-center py-16">
         <p className="display text-3xl mb-4">Your basket is empty</p>
         <p className="opacity-70 mb-6">Time to fill it with sunshine.</p>
-        <a href="/shop" className="btn btn-saffron">Browse our mangoes</a>
+        <a href={`${import.meta.env.BASE_URL}/shop`.replace('//', '/')} className="btn btn-saffron">Browse our mangoes</a>
       </div>
     );
 

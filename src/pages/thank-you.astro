@@ -1,5 +1,6 @@
 ---
 import Base from '~/layouts/Base.astro';
+import { url } from '~/lib/url';
 ---
 <Base title="Thank you — FreshMangos" noindex>
   <section class="container-x py-24 text-center max-w-2xl mx-auto">
@@ -11,8 +12,8 @@ import Base from '~/layouts/Base.astro';
     </p>
     <p id="order-ref" class="mt-6 text-sm opacity-70"></p>
     <div class="mt-10 flex justify-center gap-3 flex-wrap">
-      <a href="/" class="btn btn-ghost">Back to home</a>
-      <a href="/shop" class="btn btn-saffron">Shop more</a>
+      <a href={url('/')} class="btn btn-ghost">Back to home</a>
+      <a href={url('/shop')} class="btn btn-saffron">Shop more</a>
     </div>
   </section>
 

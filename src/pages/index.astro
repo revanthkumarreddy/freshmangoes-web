@@ -1,5 +1,6 @@
 ---
 import Base from '~/layouts/Base.astro';
+import { url } from '~/lib/url';
 import { fetchAllProducts, priceOf, primaryImage, formatINR } from '~/lib/catalog';
 
 const products = await fetchAllProducts();
@@ -21,8 +22,8 @@ const featured = products.slice(0, 6);
           carefully cushioned boxes across India.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/shop" class="btn btn-saffron">Shop the harvest →</a>
-          <a href="/about" class="btn btn-ghost">Our story</a>
+          <a href={url('/shop')} class="btn btn-saffron">Shop the harvest →</a>
+          <a href={url('/about')} class="btn btn-ghost">Our story</a>
         </div>
         <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[color:var(--color-ink-soft)]">
           <div class="flex items-center gap-2"><span aria-hidden="true">🚚</span> Free shipping over ₹1,500</div>
@@ -54,13 +55,13 @@ const featured = products.slice(0, 6);
         <p class="eyebrow mb-2">The Harvest</p>
         <h2 class="display text-4xl md:text-5xl">A mango for every memory.</h2>
       </div>
-      <a href="/shop" class="hidden md:inline-block text-sm font-semibold hover:text-[color:var(--color-saffron-600)]">See all →</a>
+      <a href={url('/shop')} class="hidden md:inline-block text-sm font-semibold hover:text-[color:var(--color-saffron-600)]">See all →</a>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {featured.map(p => {
         const { price, salePrice } = priceOf(p);
         return (
-          <a href={`/shop/${p.slug}`} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
+          <a href={url(`/shop/${p.slug}`)} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
             <div class="aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)]">
               <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
@@ -77,7 +78,7 @@ const featured = products.slice(0, 6);
       })}
     </div>
     <div class="text-center mt-10 md:hidden">
-      <a href="/shop" class="btn btn-ghost">See all mangoes</a>
+      <a href={url('/shop')} class="btn btn-ghost">See all mangoes</a>
     </div>
   </section>
 
@@ -92,7 +93,7 @@ const featured = products.slice(0, 6);
           season by season. We don't pluck early. We don't ship hard. Every mango leaves us
           tree-ripened, hand-wrapped, and on its way the same day.
         </p>
-        <a href="/about" class="btn btn-saffron mt-8 inline-flex">Read the story →</a>
+        <a href={url('/about')} class="btn btn-saffron mt-8 inline-flex">Read the story →</a>
       </div>
       <div class="grid grid-cols-3 gap-4">
         <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">

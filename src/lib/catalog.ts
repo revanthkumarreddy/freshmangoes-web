@@ -44,12 +44,14 @@ export function formatINR(n: number) {
   }).format(n);
 }
 
+const placeholder = `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/placeholder-mango.svg`;
+
 export function primaryImage(p: WixProduct | undefined | null): string {
   const main = (p as any)?.media?.mainMedia?.image?.url;
   if (main) return main;
   const first = (p as any)?.media?.items?.[0]?.image?.url;
   if (first) return first;
-  return '/placeholder-mango.svg';
+  return placeholder;
 }
 
 export function galleryImages(p: WixProduct | undefined | null): string[] {

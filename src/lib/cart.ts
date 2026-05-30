@@ -73,12 +73,13 @@ export async function checkoutNow() {
   if (!checkoutId) throw new Error('No checkout id returned by Wix');
 
   const origin = window.location.origin;
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
   const { redirectSession } = await wixClient.redirects.createRedirectSession({
     ecomCheckout: { checkoutId },
     callbacks: {
-      postFlowUrl: `${origin}/thank-you`,
-      thankYouPageUrl: `${origin}/thank-you`,
-      cartPageUrl: `${origin}/cart`,
+      postFlowUrl: `${origin}${base}/thank-you`,
+      thankYouPageUrl: `${origin}${base}/thank-you`,
+      cartPageUrl: `${origin}${base}/cart`,
     },
   });
   const url = redirectSession?.fullUrl;

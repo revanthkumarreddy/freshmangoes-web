@@ -1,5 +1,6 @@
 ---
 import Base from '~/layouts/Base.astro';
+import { url } from '~/lib/url';
 import AddToCart from '~/components/AddToCart';
 import {
   fetchAllProducts,
@@ -55,8 +56,8 @@ const jsonLd = {
   </Fragment>
 
   <nav class="container-x pt-6 text-xs opacity-70">
-    <a href="/" class="hover:opacity-100">Home</a> ·
-    <a href="/shop" class="hover:opacity-100"> Shop</a> ·
+    <a href={url('/')} class="hover:opacity-100">Home</a> ·
+    <a href={url('/shop')} class="hover:opacity-100"> Shop</a> ·
     <span class="opacity-90"> {product.name}</span>
   </nav>
 
