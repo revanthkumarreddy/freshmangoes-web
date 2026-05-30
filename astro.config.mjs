@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://freshmangoes.com',
+  site: 'https://harshithsunku.github.io',
+  base: '/freshmangoes-web',
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [react(), sitemap()],
