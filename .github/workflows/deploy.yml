@@ -28,6 +28,8 @@ jobs:
       - name: Build site
         env:
           PUBLIC_WIX_CLIENT_ID: ${{ secrets.PUBLIC_WIX_CLIENT_ID }}
+          SITE_URL: https://harshithsunku.github.io
+          BASE_PATH: /freshmangoes-web
         run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
