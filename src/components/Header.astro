@@ -31,21 +31,33 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       ))}
     </nav>
 
-    <div class="flex items-center gap-2">
-      <a href={url('/login')} id="login-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="Log in">
-        Log in
+    <div class="flex items-center gap-1">
+      <!-- Login btn: icon only on mobile, text on sm+ -->
+      <a href={url('/login')} id="login-btn" class="hidden flex-row items-center gap-1.5 btn btn-ghost !py-2 !px-3 text-sm" aria-label="Log in">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/></svg>
+        <span class="hidden sm:inline">Log in</span>
       </a>
-      <a href={url('/account')} id="account-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="My Account" style="gap:0.4rem;">
-        <span id="header-avatar" style="display:inline-flex;align-items:center;justify-content:center;width:1.5rem;height:1.5rem;border-radius:50%;background:linear-gradient(135deg,var(--color-saffron-400),var(--color-saffron-500));color:var(--color-ink);font-size:0.7rem;font-weight:700;">M</span>
-        <span class="hidden sm:inline">My Account</span>
+      <!-- Account avatar btn (icon-only on mobile, shows "Account" text on sm+) -->
+      <a href={url('/account')} id="account-btn" class="hidden flex-row items-center gap-1.5" aria-label="My Account" style="text-decoration:none;">
+        <span id="header-avatar" style="display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;background:linear-gradient(135deg,var(--color-saffron-400),var(--color-saffron-500));color:var(--color-ink);font-size:0.8rem;font-weight:700;flex-shrink:0;">M</span>
+        <span class="hidden sm:inline text-sm font-medium">Account</span>
       </a>
-      <button id="logout-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="Log out">
-        Log out
+      <!-- Logout: compact icon-only circle on mobile, text pill on sm+ -->
+      <button id="logout-btn"
+        class="hidden flex-row items-center justify-center gap-1 rounded-full transition-colors
+               w-9 h-9 sm:w-auto sm:h-auto sm:py-2 sm:px-3
+               text-[color:var(--color-ink-soft)] hover:bg-black/5
+               text-sm font-medium"
+        aria-label="Log out"
+        title="Log out"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
+        <span class="hidden sm:inline">Log out</span>
       </button>
-      <a href={url('/cart')} class="btn btn-ghost !py-2 !px-4 text-sm" aria-label="Cart">
-        <span aria-hidden="true">🛒</span>
-        <span class="hidden sm:inline">Cart</span>
-        <span id="cart-count" class="hidden ml-1 text-xs font-bold rounded-full bg-[color:var(--color-saffron-400)] text-[color:var(--color-ink)] w-5 h-5 items-center justify-center">0</span>
+      <!-- Cart -->
+      <a href={url('/cart')} class="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-black/5 transition-colors" aria-label="Cart">
+        <span aria-hidden="true" class="text-lg">🛒</span>
+        <span id="cart-count" class="hidden absolute -top-0.5 -right-0.5 text-[10px] font-bold rounded-full bg-[color:var(--color-saffron-400)] text-[color:var(--color-ink)] w-4 h-4 items-center justify-center">0</span>
       </a>
     </div>
   </div>
@@ -91,7 +103,9 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         if (loggedIn) {
           loginBtn.classList.add('hidden');
           accountBtn.classList.remove('hidden');
+          accountBtn.classList.add('flex');
           logoutBtn.classList.remove('hidden');
+          logoutBtn.classList.add('flex');
           // Set avatar initial from stored member data or local user
           try {
             const name = window.localStorage.getItem('wix:member_name') || localUser?.name;
@@ -101,8 +115,11 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           } catch {}
         } else {
           loginBtn.classList.remove('hidden');
+          loginBtn.classList.add('flex');
           accountBtn.classList.add('hidden');
+          accountBtn.classList.remove('flex');
           logoutBtn.classList.add('hidden');
+          logoutBtn.classList.remove('flex');
         }
       }
     }

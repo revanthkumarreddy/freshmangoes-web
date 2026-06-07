@@ -32,6 +32,8 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
+    /* Support iOS notch / Android nav bar */
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
   h1, h2, h3, h4, .display {
     font-family: var(--font-display);
