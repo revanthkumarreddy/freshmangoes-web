@@ -12,20 +12,18 @@ const featured = products.slice(0, 6);
     <div class="container-x grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center py-20 lg:py-28">
       <div>
         <p class="eyebrow mb-5">Srinivasapur · Karnataka · est. 2005</p>
-        <h1 class="display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+        <h1 class="display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-6">
           The mangoes of <span class="text-[color:var(--color-saffron-500)] italic">summer</span>,<br/>
           delivered to your door.
         </h1>
-        <p class="mt-6 max-w-xl text-lg text-[color:var(--color-ink-soft)] leading-relaxed">
-          For twenty seasons, our family orchard has hand-picked Karnataka's finest mangoes —
-          Alphonso, Banganpalli, Mallika, Totapuri — and shipped them, sun-ripe and untouched, in
-          carefully cushioned boxes across India.
+        <p class="text-base md:text-lg text-[color:var(--color-ink-soft)] leading-relaxed mb-8 max-w-xl">
+          For twenty seasons, our family orchard has hand-picked Karnataka's finest mangoes — Alphonso, Banganpalli, Mallika, Totapuri — and shipped them, sun-ripe and untouched, in carefully cushioned boxes across India.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="flex flex-wrap items-center gap-3 mb-10">
           <a href={url('/shop')} class="btn btn-saffron">Shop the harvest →</a>
           <a href={url('/about')} class="btn btn-ghost">Our story</a>
         </div>
-        <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-[color:var(--color-ink-soft)]">
+        <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-[color:var(--color-ink-soft)]">
           <div class="flex items-center gap-2"><span aria-hidden="true">🚚</span> Free shipping over ₹1,500</div>
           <div class="flex items-center gap-2"><span aria-hidden="true">🌿</span> Naturally tree-ripened</div>
           <div class="flex items-center gap-2"><span aria-hidden="true">📦</span> Picked &amp; shipped in 24 hrs</div>

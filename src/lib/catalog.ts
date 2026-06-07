@@ -46,20 +46,32 @@ export function formatINR(n: number) {
 
 const placeholder = `${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/placeholder-mango.svg`;
 
+// Map of slug keywords to local realistic images
+const LOCAL_IMAGES: Record<string, string> = {
+  'alphonso': '/images/mango_alphonso.png',
+  'banganpalli': '/images/mango_banganpalli.png',
+  'mallika': '/images/mango_mallika.png',
+  'totapuri': '/images/mango_totapuri.png',
+};
+
 export function primaryImage(p: WixProduct | undefined | null): string {
-  const main = (p as any)?.media?.mainMedia?.image?.url;
-  if (main) return main;
-  const first = (p as any)?.media?.items?.[0]?.image?.url;
-  if (first) return first;
-  return placeholder;
+  const slug = (p as any)?.slug?.toLowerCase() || '';
+  const name = (p as any)?.name?.toLowerCase() || '';
+  const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
+  // Intercept and provide highly realistic images
+  for (const [key, path] of Object.entries(LOCAL_IMAGES)) {
+    if (slug.includes(key) || name.includes(key)) {
+      return `${BASE}${path}`;
+    }
+  }
+
+  // Fallback to the best default realistic image we have
+  return `${BASE}/images/mango_alphonso.png`;
 }
 
 export function galleryImages(p: WixProduct | undefined | null): string[] {
-  const items: any[] = (p as any)?.media?.items ?? [];
-  const urls = items.map(i => i?.image?.url).filter((u: any): u is string => !!u);
-  if (urls.length) return urls;
-  const main = primaryImage(p);
-  return main ? [main] : [];
+  return [primaryImage(p)];
 }
 
 export type SimpleVariant = {

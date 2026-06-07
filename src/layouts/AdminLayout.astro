@@ -1,0 +1,43 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '~/styles/global.css';
+
+interface Props {
+  title: string;
+  noindex?: boolean;
+}
+
+const { title, noindex = true } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="admin-theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <ClientRouter />
+  </head>
+  <body style="background-color: #0a0a0a; color: #ededed; margin: 0; min-height: 100vh; font-family: 'Inter', sans-serif;">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Admin Theme Scoped Overrides */
+  .admin-theme {
+    --color-ink: #ffffff;
+    --color-ink-soft: #a1a1aa;
+    --color-cream: #0a0a0a;
+    --color-saffron-50: #18181b;
+    --color-saffron-100: #27272a;
+    --color-saffron-200: #3f3f46;
+    --color-saffron-300: #52525b;
+    --color-saffron-400: #eab308;
+    --color-saffron-500: #ca8a04;
+    --color-saffron-600: #a16207;
+  }
+</style>

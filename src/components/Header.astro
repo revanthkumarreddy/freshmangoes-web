@@ -32,6 +32,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     </nav>
 
     <div class="flex items-center gap-2">
+      <a href={url('/login')} id="login-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="Log in">
+        Log in
+      </a>
+      <a href={url('/account')} id="account-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="My Account" style="gap:0.4rem;">
+        <span id="header-avatar" style="display:inline-flex;align-items:center;justify-content:center;width:1.5rem;height:1.5rem;border-radius:50%;background:linear-gradient(135deg,var(--color-saffron-400),var(--color-saffron-500));color:var(--color-ink);font-size:0.7rem;font-weight:700;">M</span>
+        <span class="hidden sm:inline">My Account</span>
+      </a>
+      <button id="logout-btn" class="hidden btn btn-ghost !py-2 !px-4 text-sm" aria-label="Log out">
+        Log out
+      </button>
       <a href={url('/cart')} class="btn btn-ghost !py-2 !px-4 text-sm" aria-label="Cart">
         <span aria-hidden="true">🛒</span>
         <span class="hidden sm:inline">Cart</span>
@@ -42,22 +52,95 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <script>
-  import { wixClient } from '~/lib/wix-client';
-  async function refresh() {
-    try {
-      const cart = await wixClient.currentCart.getCurrentCart();
-      const count = (cart.lineItems || []).reduce((s, l) => s + (l.quantity || 0), 0);
-      const el = document.getElementById('cart-count');
-      if (!el) return;
-      if (count > 0) {
-        el.textContent = String(count);
-        el.classList.remove('hidden');
-        el.classList.add('inline-flex');
-      } else {
-        el.classList.add('hidden');
+  import { wixClient, isLoggedIn } from '~/lib/wix-client';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn    = document.getElementById('login-btn')   as HTMLAnchorElement | null;
+    const accountBtn  = document.getElementById('account-btn') as HTMLAnchorElement | null;
+    const logoutBtn   = document.getElementById('logout-btn')  as HTMLButtonElement | null;
+    const cartCountEl = document.getElementById('cart-count');
+    const headerAvatar = document.getElementById('header-avatar');
+
+    /** Sync cart badge count */
+    async function refreshCart() {
+      try {
+        const cart = await wixClient.currentCart.getCurrentCart();
+        const count = (cart.lineItems || []).reduce((s: number, l: any) => s + (l.quantity || 0), 0);
+        if (!cartCountEl) return;
+        if (count > 0) {
+          cartCountEl.textContent = String(count);
+          cartCountEl.classList.remove('hidden');
+          cartCountEl.classList.add('inline-flex');
+        } else {
+          cartCountEl.classList.add('hidden');
+          cartCountEl.classList.remove('inline-flex');
+        }
+      } catch { /* no cart yet */ }
+    }
+
+    /** Sync Login / Account / Logout button visibility */
+    function refreshAuth() {
+      // Check both Wix OAuth login and local login
+      const wixLoggedIn = isLoggedIn();
+      const localUser = (() => {
+        try { return JSON.parse(window.localStorage.getItem('fm:user') || 'null'); } catch { return null; }
+      })();
+      const loggedIn = wixLoggedIn || !!localUser;
+
+      if (loginBtn && accountBtn && logoutBtn) {
+        if (loggedIn) {
+          loginBtn.classList.add('hidden');
+          accountBtn.classList.remove('hidden');
+          logoutBtn.classList.remove('hidden');
+          // Set avatar initial from stored member data or local user
+          try {
+            const name = window.localStorage.getItem('wix:member_name') || localUser?.name;
+            if (headerAvatar && name) {
+              headerAvatar.textContent = name.charAt(0).toUpperCase();
+            }
+          } catch {}
+        } else {
+          loginBtn.classList.remove('hidden');
+          accountBtn.classList.add('hidden');
+          logoutBtn.classList.add('hidden');
+        }
       }
-    } catch { /* no cart yet */ }
-  }
-  refresh();
-  window.addEventListener('cart:updated', refresh);
+    }
+
+    function refresh() {
+      refreshCart();
+      refreshAuth();
+    }
+
+    refresh();
+    window.addEventListener('cart:updated', refresh);
+    window.addEventListener('auth:updated', refreshAuth);
+
+    logoutBtn?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        // Clear local auth first
+        window.localStorage.removeItem('fm:user');
+        window.localStorage.removeItem('wix:member_name');
+        
+        // Clear Wix auth if present
+        if (isLoggedIn()) {
+          const { logoutUrl } = await wixClient.auth.logout(window.location.href);
+          window.localStorage.removeItem('wix:tokens');
+          window.dispatchEvent(new Event('auth:updated'));
+          window.location.href = logoutUrl;
+          return;
+        }
+
+        window.dispatchEvent(new Event('auth:updated'));
+        window.location.href = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
+      } catch (err) {
+        console.error('[FreshMangos] logout error:', err);
+        // Fallback clear
+        window.localStorage.removeItem('wix:tokens');
+        window.dispatchEvent(new Event('auth:updated'));
+        window.location.href = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
+      }
+    });
+  });
 </script>

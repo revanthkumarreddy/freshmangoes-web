@@ -3,7 +3,7 @@ import { url } from '~/lib/url';
 const year = new Date().getFullYear();
 ---
 <footer class="mt-24 bg-[color:var(--color-ink)] text-[color:var(--color-cream)]">
-  <div class="container-x py-16 grid gap-12 md:grid-cols-4">
+  <div class="container-x py-16 grid gap-12 md:grid-cols-5">
     <div class="md:col-span-2">
       <div class="flex items-center gap-2 mb-4">
         <span class="text-2xl" aria-hidden="true">🥭</span>
@@ -27,11 +27,21 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
+      <h4 class="text-sm font-semibold uppercase tracking-wider opacity-70 mb-4">Account</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href={url('/login')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Log in</a></li>
+        <li><a href={url('/account')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">My Account</a></li>
+        <li><a href={url('/cart')} class="opacity-90 hover:opacity-100 hover:text-[color:var(--color-saffron-300)]">Cart</a></li>
+      </ul>
+    </div>
+
+    <div>
       <h4 class="text-sm font-semibold uppercase tracking-wider opacity-70 mb-4">Reach us</h4>
       <ul class="space-y-2 text-sm opacity-90">
         <li>Srinivasapur, Kolar district</li>
         <li>Karnataka, India</li>
-        <li><a href="mailto:hello@freshmangoes.com" class="hover:text-[color:var(--color-saffron-300)]">hello@freshmangoes.com</a></li>
+        <li class="mt-2"><a href="mailto:freshmangoes.in@gmail.com" class="hover:text-[color:var(--color-saffron-300)] font-medium">freshmangoes.in@gmail.com</a></li>
+        <li><a href="tel:+919844763416" class="hover:text-[color:var(--color-saffron-300)] font-medium">Helpline: +91 9844763416</a></li>
       </ul>
     </div>
   </div>

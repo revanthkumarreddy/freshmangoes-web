@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/vite": "^4.0.0",
     "@wix/ecom": "^1.0.272",
+    "@wix/members": "^1.0.459",
     "@wix/redirects": "^1.0.46",
     "@wix/sdk": "^1.15.0",
     "@wix/stores": "^1.0.222",

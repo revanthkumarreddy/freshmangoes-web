@@ -1,0 +1,204 @@
+---
+import Base from '~/layouts/Base.astro';
+import { url } from '~/lib/url';
+---
+<Base title="Completing Login — FreshMangos" noindex>
+  <!-- Callback Screen -->
+  <section class="callback-page">
+    <div class="callback-card">
+
+      <div class="callback-icon-wrap">
+        <div class="callback-icon" id="icon-el">🥭</div>
+      </div>
+
+      <!-- State: Completing -->
+      <div id="state-completing">
+        <h1 class="display callback-title">Completing login…</h1>
+        <p class="callback-subtitle">Securely exchanging your credentials.</p>
+        <div class="spinner-wrap">
+          <span class="spinner"></span>
+        </div>
+      </div>
+
+      <!-- State: Success -->
+      <div id="state-success" class="hidden">
+        <h1 class="display callback-title callback-title-success">You're in! 🎉</h1>
+        <p class="callback-subtitle">Taking you to your account dashboard…</p>
+        <div class="success-check">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-leaf-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- State: Error -->
+      <div id="state-error" class="hidden">
+        <h1 class="display callback-title callback-title-error">Login failed</h1>
+        <p id="error-msg" class="callback-subtitle">
+          Something went wrong. Please try again.
+        </p>
+        <div class="callback-actions">
+          <a href={url('/login')} class="btn btn-saffron callback-btn">Try logging in again</a>
+          <a href={url('/')} class="btn btn-ghost callback-btn">Back to store</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script type="module">
+    import { wixClient } from '~/lib/wix-client';
+
+    const elCompleting = document.getElementById('state-completing');
+    const elSuccess    = document.getElementById('state-success');
+    const elError      = document.getElementById('state-error');
+    const elErrorMsg   = document.getElementById('error-msg');
+    const elIcon       = document.getElementById('icon-el');
+
+    function showSuccess() {
+      elCompleting?.classList.add('hidden');
+      elSuccess?.classList.remove('hidden');
+    }
+
+    function showError(msg: string) {
+      elCompleting?.classList.add('hidden');
+      elError?.classList.remove('hidden');
+      if (elErrorMsg) elErrorMsg.textContent = msg;
+      if (elIcon) elIcon.textContent = '❌';
+    }
+
+    async function handleCallback() {
+      try {
+        // Retrieve stored OAuth data (PKCE verifier + state) from sessionStorage
+        const raw = sessionStorage.getItem('wix:oauthData');
+        if (!raw) {
+          throw new Error(
+            'No login session data found. This can happen if you opened the callback in a different tab. Please start the login again.'
+          );
+        }
+        const oauthData = JSON.parse(raw);
+
+        // Determine response mode: Wix may return params in hash (#) or query string (?)
+        const url = new URL(window.location.href);
+        const responseMode =
+          url.searchParams.has('code') || url.searchParams.has('error')
+            ? 'query'
+            : 'fragment';
+
+        // Parse code and state from the redirect URL
+        const { code, state, error, errorDescription } =
+          wixClient.auth.parseFromUrl(window.location.href, responseMode);
+
+        if (error) {
+          throw new Error(errorDescription || `Auth error: ${error}`);
+        }
+
+        if (!code || !state) {
+          throw new Error('Incomplete callback — missing code or state. Please try logging in again.');
+        }
+
+        // Exchange the authorization code for member tokens
+        const tokens = await wixClient.auth.getMemberTokens(code, state, oauthData);
+
+        // Commit tokens to the wixClient singleton (works for current session)
+        wixClient.auth.setTokens(tokens);
+
+        // Persist to localStorage for the next page load
+        window.localStorage.setItem('wix:tokens', JSON.stringify(tokens));
+
+        // Cleanup PKCE data from sessionStorage (one-time use)
+        sessionStorage.removeItem('wix:oauthData');
+
+        // Notify other components (Header will update Login/Logout buttons)
+        window.dispatchEvent(new Event('auth:updated'));
+
+        showSuccess();
+
+        // Redirect to account dashboard after a brief moment
+        const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+        setTimeout(() => {
+          window.location.replace(`${base}/account`);
+        }, 1200);
+      } catch (err: any) {
+        console.error('[FreshMangos] login-callback error:', err);
+        showError(err?.message ?? 'An unexpected error occurred.');
+      }
+    }
+
+    handleCallback();
+  </script>
+
+  <style>
+    .callback-page {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-saffron-50) 40%, var(--color-saffron-100) 100%);
+      padding: 2rem 1.25rem;
+    }
+    .callback-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 60px -15px rgba(165, 95, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.04);
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+    }
+    .callback-icon-wrap { margin-bottom: 2rem; }
+    .callback-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background: var(--color-saffron-50);
+      box-shadow: 0 8px 30px -8px rgba(237, 155, 20, 0.3);
+      font-size: 2.8rem;
+    }
+    .callback-title {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .callback-title-success { color: var(--color-leaf-600); }
+    .callback-title-error { color: #b91c1c; }
+    .callback-subtitle {
+      font-size: 0.9rem;
+      color: var(--color-ink-soft);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .callback-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .callback-btn { width: 100%; }
+    .success-check {
+      display: flex;
+      justify-content: center;
+      animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Spinner */
+    .spinner-wrap { display: flex; justify-content: center; }
+    .spinner {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      border: 3px solid var(--color-saffron-200);
+      border-top-color: var(--color-saffron-600);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+  </style>
+</Base>
