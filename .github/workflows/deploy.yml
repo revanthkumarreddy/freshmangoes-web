@@ -27,7 +27,9 @@ jobs:
         run: npm ci --legacy-peer-deps
       - name: Build site
         env:
-          PUBLIC_WIX_CLIENT_ID: ${{ secrets.PUBLIC_WIX_CLIENT_ID }}
+          # Public Wix Headless OAuth Client ID — safe to hardcode (browser-visible, no secret)
+          # Wix site: https://revanthkumarha.wixsite.com/my-site-4
+          PUBLIC_WIX_CLIENT_ID: 838b43b6-ece9-49f0-860c-4bac47c71e2e
           SITE_URL: https://harshithsunku.github.io
           BASE_PATH: /freshmangoes-web
         run: npm run build
