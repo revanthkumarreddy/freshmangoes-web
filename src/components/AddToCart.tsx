@@ -185,7 +185,7 @@ export default function AddToCart({ productId, productName, variants }: Props) {
               {state === 'adding' && 'Adding…'}
               {state === 'added' && '✓ Added to cart'}
               {state === 'error' && 'Try again'}
-              {state === 'idle' && `Add ${productName} to cart`}
+              {state === 'idle' && 'Add to Cart'}
             </>
           )}
         </button>
