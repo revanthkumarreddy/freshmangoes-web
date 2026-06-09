@@ -54,6 +54,19 @@ if (typeof window !== 'undefined') {
   }, 4000);
 }
 
+/** Instantly commit active SDK tokens to localStorage */
+export function persistTokens() {
+  if (typeof window === 'undefined') return;
+  try {
+    const t = wixClient.auth.getTokens?.();
+    if (t) {
+      window.localStorage.setItem('wix:tokens', JSON.stringify(t));
+    }
+  } catch (err) {
+    console.error('[WixClient] Failed to persist tokens:', err);
+  }
+}
+
 /** Check if the current visitor has member tokens (logged in). */
 export function isLoggedIn(): boolean {
   try {

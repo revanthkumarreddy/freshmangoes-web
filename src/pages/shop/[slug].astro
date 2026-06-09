@@ -10,6 +10,7 @@ import {
   priceOf,
   variantsOf,
 } from '~/lib/catalog';
+import PincodeChecker from '~/components/PincodeChecker';
 
 export async function getStaticPaths() {
   const products = await fetchAllProducts();
@@ -86,6 +87,7 @@ const jsonLd = {
 
       <div class="mt-8 p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
         <AddToCart client:load productId={product._id!} productName={product.name ?? ''} variants={variants} />
+        <PincodeChecker client:load />
       </div>
 
       <details class="mt-6 group rounded-2xl border border-black/10">

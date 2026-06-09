@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCart, updateLineItem, removeLineItem, applyCoupon, checkoutNow } from '~/lib/cart';
+import { isLoggedIn } from '~/lib/wix-client';
 
 const fmt = (amount: string | number | undefined) => {
   const n = typeof amount === 'string' ? parseFloat(amount) : amount ?? 0;
@@ -20,6 +21,14 @@ export default function CartPage() {
     setLoading(false);
   }
   useEffect(() => { refresh(); }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('autoCheckout') === '1' && cart && cart.lineItems?.length > 0 && !checkingOut) {
+      window.history.replaceState({}, '', window.location.pathname);
+      onCheckout();
+    }
+  }, [cart]);
 
   const lineItems = cart?.lineItems || [];
   const subtotal = cart?.subtotal?.amount;
@@ -48,6 +57,14 @@ export default function CartPage() {
     finally { setBusy(null); }
   }
   async function onCheckout() {
+    const localUser = (() => {
+      try { return JSON.parse(window.localStorage.getItem('fm:user') || 'null'); } catch { return null; }
+    })();
+    if (!isLoggedIn() && !localUser) {
+      window.location.href = `${import.meta.env.BASE_URL || ''}/login?checkout=1`.replace(/\/\/+/g, '/');
+      return;
+    }
+
     setCheckingOut(true); setError(null);
     try { await checkoutNow(); }
     catch (e) { setError((e as Error).message); setCheckingOut(false); }

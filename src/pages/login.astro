@@ -305,8 +305,15 @@ import { url } from '~/lib/url';
         successEl?.classList.remove('hidden');
         if (loginIcon) loginIcon.textContent = '✅';
 
+        const searchParams = new URLSearchParams(window.location.search);
+        const autoCheckout = searchParams.get('checkout') === '1';
+
         setTimeout(() => {
-          window.location.replace(`${BASE}/account`);
+          if (autoCheckout) {
+            window.location.replace(`${BASE}/cart?autoCheckout=1`);
+          } else {
+            window.location.replace(`${BASE}/account`);
+          }
         }, 1000);
       }
 

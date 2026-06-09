@@ -1,0 +1,722 @@
+[
+  {
+    "district": "Bagalkote",
+    "city": "Bagalkote",
+    "pincode": "587101"
+  },
+  {
+    "district": "Ballari",
+    "city": "Ballari",
+    "pincode": "583101"
+  },
+  {
+    "district": "Belagavi",
+    "city": "Belagavi",
+    "pincode": "590001"
+  },
+  {
+    "district": "Bengaluru Rural",
+    "city": "Doddaballapura",
+    "pincode": "562110"
+  },
+  {
+    "district": "Bidar",
+    "city": "Bidar",
+    "pincode": "585401"
+  },
+  {
+    "district": "Chamarajanagara",
+    "city": "Chamarajanagara",
+    "pincode": "571313"
+  },
+  {
+    "district": "Chikkaballapura",
+    "city": "Chikkaballapura",
+    "pincode": "562101"
+  },
+  {
+    "district": "Chikkamagaluru",
+    "city": "Chikkamagaluru",
+    "pincode": "577101"
+  },
+  {
+    "district": "Chitradurga",
+    "city": "Chitradurga",
+    "pincode": "577501"
+  },
+  {
+    "district": "Dakshina Kannada",
+    "city": "Mangaluru",
+    "pincode": "575001"
+  },
+  {
+    "district": "Davanagere",
+    "city": "Davanagere",
+    "pincode": "577001"
+  },
+  {
+    "district": "Dharwad",
+    "city": "Dharwad",
+    "pincode": "580001"
+  },
+  {
+    "district": "Gadag",
+    "city": "Gadag",
+    "pincode": "582101"
+  },
+  {
+    "district": "Hassan",
+    "city": "Hassan",
+    "pincode": "573201"
+  },
+  {
+    "district": "Haveri",
+    "city": "Haveri",
+    "pincode": "581110"
+  },
+  {
+    "district": "Kalaburagi",
+    "city": "Kalaburagi",
+    "pincode": "585101"
+  },
+  {
+    "district": "Kodagu",
+    "city": "Madikeri",
+    "pincode": "571201"
+  },
+  {
+    "district": "Kolar",
+    "city": "Kolar",
+    "pincode": "563101"
+  },
+  {
+    "district": "Koppal",
+    "city": "Koppal",
+    "pincode": "583231"
+  },
+  {
+    "district": "Mandya",
+    "city": "Mandya",
+    "pincode": "571401"
+  },
+  {
+    "district": "Mysuru",
+    "city": "Mysuru",
+    "pincode": "570001"
+  },
+  {
+    "district": "Raichur",
+    "city": "Raichur",
+    "pincode": "584101"
+  },
+  {
+    "district": "Ramanagara",
+    "city": "Ramanagara",
+    "pincode": "562159"
+  },
+  {
+    "district": "Shivamogga",
+    "city": "Shivamogga",
+    "pincode": "577201"
+  },
+  {
+    "district": "Tumakuru",
+    "city": "Tumakuru",
+    "pincode": "572101"
+  },
+  {
+    "district": "Udupi",
+    "city": "Udupi",
+    "pincode": "576101"
+  },
+  {
+    "district": "Uttara Kannada",
+    "city": "Karwar",
+    "pincode": "581301"
+  },
+  {
+    "district": "Vijayanagara",
+    "city": "Hosapete",
+    "pincode": "583201"
+  },
+  {
+    "district": "Vijayapura",
+    "city": "Vijayapura",
+    "pincode": "586101"
+  },
+  {
+    "district": "Yadgir",
+    "city": "Yadgir",
+    "pincode": "585201"
+  },
+  {
+    "district": "Chennai",
+    "city": "Tamil Nadu",
+    "pincode": "600001"
+  },
+  {
+    "district": "Hyderabad",
+    "city": "Telangana",
+    "pincode": "500001"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Bangalore GPO, Vidhana Soudha, Cubbon Park, MG Road, Brigade Road",
+    "pincode": "560001"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Bangalore City HO, Avenue Road, Chickpet, City Market, SJP Road",
+    "pincode": "560002"
+  },
+  {
+    "district": "Bengaluru Central/West",
+    "city": "Malleshwaram, Vyalikaval, Palace Guttahalli",
+    "pincode": "560003"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Basavanagudi, Shankarapura, Visvesvarapuram (VV Puram), Mavalli",
+    "pincode": "560004"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Fraser Town, Cox Town, Sindhi Hospital",
+    "pincode": "560005"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "J.C. Nagar, Munireddy Palya, TV Tower",
+    "pincode": "560006"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Agram, Air Force Hospital, CMP Centre",
+    "pincode": "560007"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Ulsoor (Halasuru), HAL II Stage, CMH Road",
+    "pincode": "560008"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Gandhi Nagar, Majestic, KG Road, City Civil Court",
+    "pincode": "560009"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Rajajinagar (1st to 6th Block), Srirampuram",
+    "pincode": "560010"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Jayanagar (1st to 4th Block), Madhavan Park, Someshwaranagar",
+    "pincode": "560011"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Indian Institute of Science (IISc), Mathikere",
+    "pincode": "560012"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Jalahalli, HMT, BEL",
+    "pincode": "560013"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Jalahalli East",
+    "pincode": "560014"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Jalahalli West",
+    "pincode": "560015"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Dooravaninagar, Ramamurthy Nagar, Kalkere",
+    "pincode": "560016"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Vimanapura, HAL, Murugeshpalya, Ramesh Nagar",
+    "pincode": "560017"
+  },
+  {
+    "district": "Bengaluru South/Central",
+    "city": "Chamrajpet West, Azad Nagar, Goripalya",
+    "pincode": "560018"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Gavipuram Extension, Hanumanthanagar, Kempegowda Nagar",
+    "pincode": "560019"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Seshadripuram, Kumara Park West",
+    "pincode": "560020"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Srirampuram, Gayathrinagar, Prakashnagar",
+    "pincode": "560021"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Yeshwanthpur, APMC Yard",
+    "pincode": "560022"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Magadi Road, KP Agrahara, Binnypete",
+    "pincode": "560023"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Hebbal Agricultural Farm, Anandnagar, Ganganagar",
+    "pincode": "560024"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Richmond Town, Langford Town, Victoria Layout",
+    "pincode": "560025"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Deepanjalinagar, Bapujinagar, Mysore Road",
+    "pincode": "560026"
+  },
+  {
+    "district": "Bengaluru Central/South",
+    "city": "Wilson Garden, Shanthinagar, SR Nagar",
+    "pincode": "560027"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Thyagarajanagar, NR Colony",
+    "pincode": "560028"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Dharmaram College, SG Palya, BTM 1st Stage",
+    "pincode": "560029"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "Adugodi, Koramangala 8th Block, NDRI",
+    "pincode": "560030"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Kyalasanahalli, Viswanathapura",
+    "pincode": "560031"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "R.T. Nagar, Ganganagar, Dinnur",
+    "pincode": "560032"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Maruthi Sevanagar, Jai Bharath Nagar",
+    "pincode": "560033"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "Koramangala (1st to 4th Block), Agara, St. Johns",
+    "pincode": "560034"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "Carmelram, Sarjapur Road, Doddakannelli",
+    "pincode": "560035"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Krishnarajapuram (KR Puram), Devasandra",
+    "pincode": "560036"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Marathahalli, Kundalahalli, Doddanekkundi, Munnekollal",
+    "pincode": "560037"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Indiranagar, Defence Colony",
+    "pincode": "560038"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Nayandahalli, Pantharapalya",
+    "pincode": "560039"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Vijayanagar, Chandra Layout, RPC Layout",
+    "pincode": "560040"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Jayanagar South (9th Block), Tilaknagar",
+    "pincode": "560041"
+  },
+  {
+    "district": "Bengaluru East/Central",
+    "city": "Sivan Chetty Gardens, RBANMS",
+    "pincode": "560042"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Banaswadi, Horamavu, Kalyan Nagar, HRBR Layout",
+    "pincode": "560043"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Kurubarahalli",
+    "pincode": "560044"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Arabic College, Nagawara, Venkateshapura",
+    "pincode": "560045"
+  },
+  {
+    "district": "Bengaluru Central/North",
+    "city": "Benson Town, Jayamahal, Nandi Durg Road",
+    "pincode": "560046"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Austin Town, Viveknagar, Vannarpet",
+    "pincode": "560047"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Mahadevapura, Hoodi, Garudacharpalya",
+    "pincode": "560048"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Virgonagar, Bhattarahalli, TC Palya",
+    "pincode": "560049"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Banashankari (BSK 1st Stage), Ashoknagar, Srinagar",
+    "pincode": "560050"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "H.K.P Road, Broadway, Shivajinagar Area",
+    "pincode": "560051"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Vasanthnagar, High Grounds, Cunningham Road",
+    "pincode": "560052"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Balepete, Chickpet Area, Cottonpet",
+    "pincode": "560053"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Mathikere, Gokula Extension, MSRIT",
+    "pincode": "560054"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Malleshwaram West, Subramanyanagar",
+    "pincode": "560055"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Bangalore University (Jnana Bharathi)",
+    "pincode": "560056"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Dasarahalli, T. Dasarahalli",
+    "pincode": "560057"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Peenya Industrial Estate, Laggere",
+    "pincode": "560058"
+  },
+  {
+    "district": "Bengaluru South/West",
+    "city": "R.V. Niketan, Kengeri Satellite Town",
+    "pincode": "560059"
+  },
+  {
+    "district": "Bengaluru South/West",
+    "city": "Kengeri",
+    "pincode": "560060"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Subramanyapura, Chikkalasandra, Uttarahalli",
+    "pincode": "560061"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Doddakallasandra, Konanakunte, Yelachenahalli",
+    "pincode": "560062"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Air Force Station Yelahanka",
+    "pincode": "560063"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Yelahanka Satellite Town, Attur, Vidyaranyapura",
+    "pincode": "560064"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "G.K.V.K.",
+    "pincode": "560065"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Whitefield, EPIP Zone, Nallurhalli",
+    "pincode": "560066"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Kadugodi, Belathur",
+    "pincode": "560067"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Madiwala, Bommanahalli, Begur, Rupena Agrahara",
+    "pincode": "560068"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Jayanagar East",
+    "pincode": "560069"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Banashankari 2nd Stage, Padmanabhanagar",
+    "pincode": "560070"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Domlur, Doopanahalli",
+    "pincode": "560071"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Nagarbhavi, Mudalapalya",
+    "pincode": "560072"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Nagasandra, Bagalgunte, Hesaraghatta Road",
+    "pincode": "560073"
+  },
+  {
+    "district": "Bengaluru South/West",
+    "city": "Kumbalgodu, Ramohalli",
+    "pincode": "560074"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "New Thippasandra, Jeevan Bima Nagar",
+    "pincode": "560075"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Bannerghatta Road, Bilekahalli, Hulimavu, Arekere",
+    "pincode": "560076"
+  },
+  {
+    "district": "Bengaluru North/East",
+    "city": "Kothanur, Hennur Gardens",
+    "pincode": "560077"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "J.P. Nagar (1st to 6th Phase), Kumaraswamy Layout",
+    "pincode": "560078"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Basaveshwaranagar, Kamakshipalya",
+    "pincode": "560079"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Sadashivanagar, RMV Extension",
+    "pincode": "560080"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Byrasandra",
+    "pincode": "560081"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Mico Layout",
+    "pincode": "560082"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Bannerghatta National Park area, Kalkere",
+    "pincode": "560083"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "St. Thomas Town, Kacharakanahalli",
+    "pincode": "560084"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Banashankari 3rd Stage, Girinagar, Kathriguppe",
+    "pincode": "560085"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Mahalakshmi Layout",
+    "pincode": "560086"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Gunjur",
+    "pincode": "560087"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Hesaraghatta",
+    "pincode": "560088"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "Harlur",
+    "pincode": "560089"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Chikkabanavara",
+    "pincode": "560090"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Viswaneedam, Herohalli",
+    "pincode": "560091"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Amruthahalli, Byatarayanapura, Kodigehalli, Sahakara Nagar",
+    "pincode": "560092"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "C.V. Raman Nagar, Kaggadasapura",
+    "pincode": "560093"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Nagashettyhalli, RMV 2nd Stage, ISRO Anthariksha Bhavan",
+    "pincode": "560094"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "Koramangala 6th Block",
+    "pincode": "560095"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Nandini Layout, Kanteeravanagar",
+    "pincode": "560096"
+  },
+  {
+    "district": "Bengaluru North",
+    "city": "Vidyaranyapura, MS Palya",
+    "pincode": "560097"
+  },
+  {
+    "district": "Bengaluru South/West",
+    "city": "Rajarajeshwari Nagar (RR Nagar), Kenchanahalli, Ideal Homes",
+    "pincode": "560098"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Bommasandra Industrial Estate, Chandapura",
+    "pincode": "560099"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Electronics City, Doddathogur",
+    "pincode": "560100"
+  },
+  {
+    "district": "Bengaluru South/East",
+    "city": "HSR Layout",
+    "pincode": "560102"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Bellandur, Devarabisanahalli",
+    "pincode": "560103"
+  },
+  {
+    "district": "Bengaluru West",
+    "city": "Hampinagar, RPC Layout",
+    "pincode": "560104"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Kariyammana Agrahara",
+    "pincode": "560105"
+  },
+  {
+    "district": "Bengaluru Central",
+    "city": "Anand Rao Circle",
+    "pincode": "560106"
+  },
+  {
+    "district": "Bengaluru North/West",
+    "city": "Doddabidarakallu",
+    "pincode": "560107"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Anjanapura, Gottigere",
+    "pincode": "560108"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Thalaghattapura",
+    "pincode": "560109"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Varthur",
+    "pincode": "560111"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Roopena Agrahara",
+    "pincode": "560112"
+  },
+  {
+    "district": "Bengaluru South",
+    "city": "Kudlu",
+    "pincode": "560113"
+  },
+  {
+    "district": "Bengaluru East",
+    "city": "Kannamangala",
+    "pincode": "560114"
+  }
+]

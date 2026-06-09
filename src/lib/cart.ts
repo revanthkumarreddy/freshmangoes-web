@@ -3,7 +3,7 @@
  * No external state library — we just emit a `cart:updated` window event
  * that the header (and any other listener) can react to.
  */
-import { wixClient } from './wix-client';
+import { wixClient, persistTokens } from './wix-client';
 
 export type LineItemInput = {
   catalogItemId: string;
@@ -12,7 +12,7 @@ export type LineItemInput = {
   options?: Record<string, string>;
 };
 
-const STORES_APP_ID = '1380b703-ce81-ff05-f115-39571d94dfcd';
+const STORES_APP_ID = '215238eb-22a5-4c36-9e7b-e7c08025e04e';
 
 export async function getCart() {
   try {
@@ -23,36 +23,53 @@ export async function getCart() {
 }
 
 export async function addToCart(input: LineItemInput) {
-  const res = await wixClient.currentCart.addToCurrentCart({
-    lineItems: [
-      {
-        catalogReference: {
-          catalogItemId: input.catalogItemId,
-          appId: STORES_APP_ID,
-          options: input.variantId
-            ? { variantId: input.variantId }
-            : input.options
-              ? { options: input.options }
-              : undefined,
-        },
-        quantity: input.quantity,
-      },
-    ],
-  });
-  window.dispatchEvent(new CustomEvent('cart:updated'));
-  return res;
+  const actualVariantId = input.variantId && input.variantId !== '00000000-0000-0000-0000-000000000000' && input.variantId !== 'default' ? input.variantId : undefined;
+
+  const lineItem = {
+    catalogReference: {
+      catalogItemId: input.catalogItemId,
+      appId: STORES_APP_ID,
+      ...(actualVariantId 
+          ? { options: { variantId: actualVariantId } } 
+          : input.options 
+            ? { options: { options: input.options } } 
+            : {})
+    },
+    quantity: input.quantity,
+  };
+
+  console.log('[cart] addToCart payload:', JSON.stringify({ lineItems: [lineItem] }, null, 2));
+  console.log('[cart] STORES_APP_ID:', STORES_APP_ID);
+
+  try {
+    const res = await wixClient.currentCart.addToCurrentCart({
+      lineItems: [lineItem],
+    });
+    console.log('[cart] addToCurrentCart success:', JSON.stringify(res?.cart?.lineItems?.length, null, 2), 'items in cart');
+    persistTokens();
+    window.dispatchEvent(new CustomEvent('cart:updated'));
+    return res;
+  } catch (err: any) {
+    console.error('[cart] addToCurrentCart FAILED:', err);
+    console.error('[cart] Error name:', err?.name);
+    console.error('[cart] Error message:', err?.message);
+    console.error('[cart] Error details:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+    throw err;
+  }
 }
 
 export async function updateLineItem(lineItemId: string, quantity: number) {
   const res = await wixClient.currentCart.updateCurrentCartLineItemQuantity([
     { _id: lineItemId, quantity },
   ]);
+  persistTokens();
   window.dispatchEvent(new CustomEvent('cart:updated'));
   return res;
 }
 
 export async function removeLineItem(lineItemId: string) {
   const res = await wixClient.currentCart.removeLineItemsFromCurrentCart([lineItemId]);
+  persistTokens();
   window.dispatchEvent(new CustomEvent('cart:updated'));
   return res;
 }
@@ -61,6 +78,7 @@ export async function applyCoupon(code: string) {
   const res = await wixClient.currentCart.updateCurrentCart({
     couponCode: code,
   });
+  persistTokens();
   window.dispatchEvent(new CustomEvent('cart:updated'));
   return res;
 }

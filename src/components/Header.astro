@@ -87,7 +87,9 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           cartCountEl.classList.add('hidden');
           cartCountEl.classList.remove('inline-flex');
         }
-      } catch { /* no cart yet */ }
+      } catch (err) {
+        console.error('[Header] refreshCart failed:', err);
+      }
     }
 
     /** Sync Login / Account / Logout button visibility */

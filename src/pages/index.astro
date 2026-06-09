@@ -7,10 +7,15 @@ const products = await fetchAllProducts();
 const featured = products.slice(0, 6);
 ---
 <Base>
+  <!-- Announcement Bar -->
+  <div class="bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)] text-center py-2 px-4 text-xs font-medium tracking-wide">
+    <span class="inline-block animate-[pulse_2s_ease-in-out_infinite] mr-1">✨</span> Free express shipping on all orders over ₹1,500. Limited time only.
+  </div>
+
   <!-- Hero -->
-  <section class="relative overflow-hidden">
+  <section class="relative overflow-hidden animate-[fade-in_0.8s_ease-out]">
     <div class="container-x grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center py-20 lg:py-28">
-      <div>
+      <div class="animate-[slide-up_1s_ease-out]">
         <p class="eyebrow mb-5">Srinivasapur · Karnataka · est. 2005</p>
         <h1 class="display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-6">
           The mangoes of <span class="text-[color:var(--color-saffron-500)] italic">summer</span>,<br/>
@@ -29,7 +34,7 @@ const featured = products.slice(0, 6);
           <div class="flex items-center gap-2"><span aria-hidden="true">📦</span> Picked &amp; shipped in 24 hrs</div>
         </div>
       </div>
-      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-[color:var(--color-saffron-200)] to-[color:var(--color-saffron-400)]">
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-[color:var(--color-saffron-200)] to-[color:var(--color-saffron-400)] animate-[slide-up_1s_ease-out_0.2s_both]">
         {featured[0] && (
           <img
             src={primaryImage(featured[0])}

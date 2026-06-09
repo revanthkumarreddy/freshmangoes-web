@@ -57,7 +57,7 @@ Push to `main` and the included [GitHub Actions workflow](.github/workflows/depl
 2. In the repo, go to **Settings → Pages**, set **Source** to **GitHub Actions**.
 3. Add a repo secret **Settings → Secrets and variables → Actions → New repository secret**:
    - Name: `PUBLIC_WIX_CLIENT_ID`
-   - Value: `838b43b6-ece9-49f0-860c-4bac47c71e2e`
+   - Value: `78f72bb8-e7ac-4945-acc2-b2c119855015`
 4. Re-run the Actions workflow if it hasn't auto-triggered.
 
 ### Custom domain (`freshmangoes.com`)
@@ -77,7 +77,7 @@ DNS propagation takes a few minutes to a few hours. GitHub will then auto-provis
 ## Wix backend
 
 - **Site:** my-site-4 (https://revanthkumarha.wixsite.com/my-site-4)
-- **OAuth Client ID:** `838b43b6-ece9-49f0-860c-4bac47c71e2e` (name *"FreshMangos Web"*)
+- **OAuth Client ID:** `78f72bb8-e7ac-4945-acc2-b2c119855015` (name "FreshMangos Web (GitHub Pages)")
 - **Allowed redirect URIs:** `http://localhost:4321/freshmangoes-web/login-callback`, `https://harshithsunku.github.io/freshmangoes-web/login-callback`
 
 Manage the catalog, orders, payments and coupons at the [Wix dashboard](https://manage.wix.com/). Any product / price / coupon change there shows up here on the next deploy (build re-fetches the catalog).
