@@ -153,7 +153,7 @@ export default function AddToCart({ productId, productName, variants }: Props) {
         <span className="text-xs uppercase tracking-wider opacity-60">incl. of all taxes</span>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3">
         <div className="inline-flex items-center rounded-full border border-black/15 overflow-hidden">
           <button
             type="button"

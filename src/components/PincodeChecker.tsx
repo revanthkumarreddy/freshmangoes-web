@@ -61,7 +61,7 @@ export default function PincodeChecker() {
             if (status !== 'idle') setStatus('idle'); // Reset on type
           }}
           placeholder="Enter 6-digit PIN code"
-          className="flex-1 px-4 py-2.5 rounded-xl border border-black/15 text-sm outline-none focus:border-[color:var(--color-saffron-500)] focus:ring-1 focus:ring-[color:var(--color-saffron-500)] transition-all"
+          className="flex-1 min-w-0 px-4 py-2.5 rounded-xl border border-black/15 text-sm outline-none focus:border-[color:var(--color-saffron-500)] focus:ring-1 focus:ring-[color:var(--color-saffron-500)] transition-all"
         />
         <button
           onClick={handleCheck}

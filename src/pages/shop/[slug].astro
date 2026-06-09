@@ -85,7 +85,7 @@ const jsonLd = {
         <p class="mt-4 text-base opacity-80 leading-relaxed max-w-prose">{descText.slice(0, 220)}</p>
       )}
 
-      <div class="mt-8 p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
+      <div class="mt-8 p-4 sm:p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
         <AddToCart client:load productId={product._id!} productName={product.name ?? ''} variants={variants} />
         <PincodeChecker client:load />
       </div>
