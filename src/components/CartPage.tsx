@@ -150,7 +150,7 @@ export default function CartPage() {
           {checkingOut ? 'Redirecting to secure checkout…' : 'Checkout securely →'}
         </button>
         {error && <p className="text-xs text-red-700 mt-3">{error}</p>}
-        <p className="text-xs opacity-60 mt-4">Secure payment via Wix Payments. India shipping only. Free over ₹1,500.</p>
+        <p className="text-xs opacity-60 mt-4">Secure payment via Wix Payments. India shipping only. Free over ₹599.</p>
       </aside>
     </div>
   );

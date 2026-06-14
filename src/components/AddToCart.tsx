@@ -207,7 +207,7 @@ export default function AddToCart({ productId, productName, variants }: Props) {
       )}
 
       <p className="text-xs opacity-70">
-        Picked, packed and shipped within 24 hours. Free shipping over ₹1,500.
+        Picked, packed and shipped within 24 hours. Free shipping over ₹599.
       </p>
     </div>
   );
