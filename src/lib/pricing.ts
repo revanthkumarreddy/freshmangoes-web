@@ -5,7 +5,9 @@ export function getOverriddenPrice(productName: string, variantName: string, ori
   const basePrices: Record<string, number> = {
     'alphonso': 549,
     'mallika': 549,
-    'neelam': 499,
+    'neelam': 459,
+    'nilam': 459,
+    'neelum': 459,
     'sendura': 479,
     'totapuri': 399,
   };
