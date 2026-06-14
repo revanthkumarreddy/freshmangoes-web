@@ -54,6 +54,10 @@ const LOCAL_IMAGES: Record<string, string> = {
   'banganpalli': '/images/mango_banganpalli.png',
   'mallika': '/images/mango_mallika.png',
   'totapuri': '/images/mango_totapuri.png',
+  'neelam': '/images/mango_neelam.png',
+  'nilam': '/images/mango_neelam.png',
+  'neelum': '/images/mango_neelam.png',
+  'sendura': '/images/mango_sendura.png',
 };
 
 export function primaryImage(p: WixProduct | undefined | null): string {
