@@ -3,6 +3,7 @@
  * Uses Wix Stores V1 (the catalog version actually populated on this site).
  */
 import { wixServer } from './wix-server';
+import { getOverriddenPrice } from './pricing';
 
 export type WixProduct = Awaited<
   ReturnType<ReturnType<typeof wixServer.products.queryProducts>['find']>
@@ -26,8 +27,9 @@ export async function fetchProductBySlug(slug: string): Promise<WixProduct | und
 
 export function priceOf(p: WixProduct | undefined | null) {
   if (!p) return { price: 0, salePrice: null as number | null, currency: 'INR' };
-  const price = Number((p as any).price?.price ?? (p as any).priceData?.price ?? 0);
-  const discounted = Number((p as any).price?.discountedPrice ?? (p as any).priceData?.discountedPrice ?? price);
+  let price = Number((p as any).price?.price ?? (p as any).priceData?.price ?? 0);
+  price = getOverriddenPrice((p as any).name, '3kg', price);
+  let discounted = price;
   const onSale = discounted < price;
   return {
     price: onSale ? discounted : price,
@@ -99,13 +101,15 @@ export function variantsOf(p: WixProduct | undefined | null): SimpleVariant[] {
   }
   return raw.map(v => {
     const choiceValues = v.choices ? (Object.values(v.choices) as string[]) : [];
-    const price = Number(v.variant?.priceData?.price ?? 0);
-    const discounted = Number(v.variant?.priceData?.discountedPrice ?? price);
+    const variantName = choiceValues.join(' · ') || v.variant?.sku || 'Default';
+    let price = Number(v.variant?.priceData?.price ?? 0);
+    price = getOverriddenPrice((p as any).name, variantName, price);
+    const discounted = price;
     const onSale = discounted < price;
     return {
       _id: v._id,
       variantId: v._id,
-      name: choiceValues.join(' · ') || v.variant?.sku || 'Default',
+      name: variantName,
       price: onSale ? discounted : price,
       salePrice: onSale ? price : null,
       inStock: v.stock?.inStock !== false,

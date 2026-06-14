@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { addToCart } from '~/lib/cart';
 import { wixClient } from '~/lib/wix-client';
+import { getOverriddenPrice } from '~/lib/pricing';
 
 type Variant = {
   _id?: string;
@@ -38,13 +39,15 @@ export default function AddToCart({ productId, productName, variants }: Props) {
         if (items.length > 0 && active) {
           const product = items[0];
           let mapped: Variant[] = product.variants?.map(v => {
-            const price = Number(v.variant?.priceData?.price ?? 0);
-            const discounted = Number(v.variant?.priceData?.discountedPrice ?? price);
+            const variantName = v.choices ? Object.values(v.choices).join(' · ') : 'Default';
+            let price = Number(v.variant?.priceData?.price ?? 0);
+            price = getOverriddenPrice(productName, variantName, price);
+            const discounted = price;
             const onSale = discounted < price;
             return {
               _id: v._id,
               variantId: v._id,
-              name: v.choices ? Object.values(v.choices).join(' · ') : 'Default',
+              name: variantName,
               price: onSale ? discounted : price,
               salePrice: onSale ? price : null,
               inStock: v.stock?.inStock !== false,
@@ -55,8 +58,9 @@ export default function AddToCart({ productId, productName, variants }: Props) {
           }) || [];
           
           if (mapped.length === 0) {
-            const price = Number(product.price?.price ?? product.priceData?.price ?? 0);
-            const discounted = Number(product.price?.discountedPrice ?? product.priceData?.discountedPrice ?? price);
+            let price = Number(product.price?.price ?? product.priceData?.price ?? 0);
+            price = getOverriddenPrice(productName, 'Default', price);
+            const discounted = price;
             const onSale = discounted < price;
             mapped.push({
               _id: 'default',
