@@ -110,5 +110,8 @@ export function variantsOf(p: WixProduct | undefined | null): SimpleVariant[] {
       salePrice: onSale ? price : null,
       inStock: v.stock?.inStock !== false,
     };
+  }).filter(v => {
+    const n = v.name.toLowerCase().replace(/\s/g, '');
+    return n.includes('3kg') || n.includes('5kg');
   });
 }

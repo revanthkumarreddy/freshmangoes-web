@@ -37,7 +37,7 @@ export default function AddToCart({ productId, productName, variants }: Props) {
         const { items } = await wixClient.products.queryProducts().eq('_id', productId).find();
         if (items.length > 0 && active) {
           const product = items[0];
-          const mapped: Variant[] = product.variants?.map(v => {
+          let mapped: Variant[] = product.variants?.map(v => {
             const price = Number(v.variant?.priceData?.price ?? 0);
             const discounted = Number(v.variant?.priceData?.discountedPrice ?? price);
             const onSale = discounted < price;
@@ -49,6 +49,9 @@ export default function AddToCart({ productId, productName, variants }: Props) {
               salePrice: onSale ? price : null,
               inStock: v.stock?.inStock !== false,
             };
+          }).filter((v: Variant) => {
+            const n = (v.name || '').toLowerCase().replace(/\s/g, '');
+            return n.includes('3kg') || n.includes('5kg');
           }) || [];
           
           if (mapped.length === 0) {
