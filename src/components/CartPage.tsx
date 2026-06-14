@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCart, updateLineItem, removeLineItem, applyCoupon, checkoutNow } from '~/lib/cart';
 import { isLoggedIn } from '~/lib/wix-client';
+import { getOverriddenPrice } from '~/lib/pricing';
 
 const fmt = (amount: string | number | undefined) => {
   const n = typeof amount === 'string' ? parseFloat(amount) : amount ?? 0;
@@ -30,11 +31,25 @@ export default function CartPage() {
     }
   }, [cart]);
 
-  const lineItems = cart?.lineItems || [];
-  const subtotal = cart?.subtotal?.amount;
-  const total = cart?.priceSummary?.total?.amount || subtotal;
-  const discount = cart?.priceSummary?.discount?.amount;
-  const shipping = cart?.priceSummary?.shipping?.amount;
+  let overrideSubtotal = 0;
+  const displayLineItems = (cart?.lineItems || []).map((li: any) => {
+    const productName = li.productName?.original || li.productName?.translated || '';
+    let variantName = 'Default';
+    if (li.descriptionLines?.length > 0) {
+      variantName = li.descriptionLines.map((d: any) => d.colorInfo?.original || d.plainText?.original).join(' · ');
+    }
+    const originalPrice = parseFloat(li.price?.amount || '0');
+    const displayPrice = getOverriddenPrice(productName, variantName, originalPrice);
+    overrideSubtotal += displayPrice * li.quantity;
+    return { ...li, displayPrice };
+  });
+
+  const subtotal = overrideSubtotal;
+  const discountAmt = parseFloat(cart?.priceSummary?.discount?.amount || '0');
+  const shippingAmt = parseFloat(cart?.priceSummary?.shipping?.amount || '0');
+  const total = overrideSubtotal + shippingAmt - discountAmt;
+  const discount = discountAmt > 0 ? discountAmt.toString() : undefined;
+  const shipping = shippingAmt > 0 ? shippingAmt.toString() : undefined;
 
   async function onQty(id: string, q: number) {
     setBusy(id); setError(null);
@@ -71,7 +86,7 @@ export default function CartPage() {
   }
 
   if (loading) return <p className="opacity-70">Loading your cart…</p>;
-  if (!lineItems.length)
+  if (!displayLineItems.length)
     return (
       <div className="text-center py-16">
         <p className="display text-3xl mb-4">Your basket is empty</p>
@@ -83,7 +98,7 @@ export default function CartPage() {
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_360px]">
       <div className="space-y-4">
-        {lineItems.map((li: any) => (
+        {displayLineItems.map((li: any) => (
           <div key={li._id} className="flex gap-4 bg-white rounded-2xl p-4 shadow-sm border border-black/5">
             {li.image && (
               <img src={li.image} alt="" className="w-24 h-24 rounded-xl object-cover" />
@@ -109,7 +124,7 @@ export default function CartPage() {
               </div>
             </div>
             <div className="text-right">
-              <p className="display text-lg">{fmt(li.price?.amount)}</p>
+              <p className="display text-lg">{fmt(li.displayPrice)}</p>
               {li.fullPrice && li.fullPrice.amount !== li.price?.amount && (
                 <p className="price-strike text-xs">{fmt(li.fullPrice.amount)}</p>
               )}
