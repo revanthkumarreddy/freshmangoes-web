@@ -2,7 +2,7 @@
 import Base from '~/layouts/Base.astro';
 import { url } from '~/lib/url';
 ---
-<Base title="Completing Login — FreshMangos" noindex>
+<Base title="Completing Login — FreshMangoes" noindex>
   <!-- Callback Screen -->
   <section class="callback-page">
     <div class="callback-card">
@@ -121,7 +121,7 @@ import { url } from '~/lib/url';
           window.location.replace(`${base}/account`);
         }, 1200);
       } catch (err: any) {
-        console.error('[FreshMangos] login-callback error:', err);
+        console.error('[FreshMangoes] login-callback error:', err);
         showError(err?.message ?? 'An unexpected error occurred.');
       }
     }

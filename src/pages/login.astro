@@ -2,7 +2,7 @@
 import Base from '~/layouts/Base.astro';
 import { url } from '~/lib/url';
 ---
-<Base title="Log in — FreshMangos" noindex>
+<Base title="Log in — FreshMangoes" noindex>
   <section class="login-page">
     <div class="login-card-centered">
 
@@ -279,7 +279,7 @@ import { url } from '~/lib/url';
           const { authUrl } = await wixClient.auth.getAuthUrl(oauthData);
           window.location.href = authUrl;
         } catch (err: any) {
-          console.error('[FreshMangos] Wix OAuth error:', err);
+          console.error('[FreshMangoes] Wix OAuth error:', err);
           wixLoginBtn.removeAttribute('disabled');
           wixLoginBtn.innerHTML = `
             <svg width="18" height="18" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ import { url } from '~/lib/url';
         }
       }
 
-      console.log('[FreshMangos] Login page initialized');
+      console.log('[FreshMangoes] Login page initialized');
     });
   </script>
 

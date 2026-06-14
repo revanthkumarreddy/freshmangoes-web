@@ -37,7 +37,7 @@ const jsonLd = {
   name: product.name,
   image: gallery,
   description: descText,
-  brand: { '@type': 'Brand', name: 'FreshMangos' },
+  brand: { '@type': 'Brand', name: 'FreshMangoes' },
   offers: {
     '@type': 'Offer',
     priceCurrency: 'INR',
@@ -48,7 +48,7 @@ const jsonLd = {
 };
 ---
 <Base
-  title={`${product.name} — FreshMangos`}
+  title={`${product.name} — FreshMangoes`}
   description={(descText || `Premium ${product.name} mangoes from our Srinivasapur orchard.`).slice(0, 160)}
   image={mainImage}
 >
@@ -79,7 +79,7 @@ const jsonLd = {
     </div>
 
     <div class="lg:sticky lg:top-24">
-      <p class="eyebrow mb-3">FreshMangos · Hand-picked</p>
+      <p class="eyebrow mb-3">FreshMangoes · Hand-picked</p>
       <h1 class="display text-4xl md:text-5xl tracking-tight leading-[1.05]">{product.name}</h1>
       {descText && (
         <p class="mt-4 text-base opacity-80 leading-relaxed max-w-prose">{descText.slice(0, 220)}</p>

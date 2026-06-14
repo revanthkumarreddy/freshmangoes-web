@@ -108,7 +108,7 @@ export default function AdminDashboard() {
           <span style={{ fontSize: '1.5rem' }}>🥭</span>
           <div>
             <div style={{ fontWeight: 600, color: '#fff', letterSpacing: '-0.02em' }}>Control Center</div>
-            <div style={{ fontSize: '0.7rem', color: '#a1a1aa' }}>FreshMangos HQ</div>
+            <div style={{ fontSize: '0.7rem', color: '#a1a1aa' }}>FreshMangoes HQ</div>
           </div>
         </div>
 
